@@ -1,0 +1,24 @@
+{
+  "description": "Download files in selection",
+  "manifest_version": 2,
+  "name": "SelectionDownloader",
+  "version": "0.1",
+  "homepage_url": "https://github.com/Eivy/SelectionDownloader",
+  "icons": {
+    "16": "icons/collection.svg",
+    "48": "icons/collection.svg",
+    "96": "icons/collection.svg"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [{
+    "matches": ["*://*/*"],
+    "js": ["activeTab.js"]
+  }],
+  "permissions": [
+    "menus"
+    ,"activeTab"
+    ,"downloads"
+  ]
+}
