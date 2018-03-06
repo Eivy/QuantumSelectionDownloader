@@ -7,7 +7,7 @@
     "build": "webpack --mode production",
     "dev": "webpack --mode development",
     "watch": "webpack --mode development --watch",
-    "package": "npm run build && zip SelectionDownloader.zip SelectionDownloader/*"
+    "package": "npm run build && cd SelectionDownloader && zip ../SelectionDownloader.zip *"
   },
   "repository": {
     "type": "git",
