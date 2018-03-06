@@ -1,0 +1,13 @@
+language: node_js
+node_js: stable
+dist: trusty
+before_deploy:
+- npm run package
+deploy:
+  provider: releases
+  file: SelectionDownloader.zip
+  skip_cleanup: true
+  on:
+    repo: Eivy/SelectionDownloader
+    all_branchies: true
+    tags: true
