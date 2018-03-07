@@ -2,7 +2,7 @@
   "description": "Download files from selected area without prompt",
   "manifest_version": 2,
   "name": "SelectionDownloader",
-  "version": "0.1",
+  "version": "0.2",
   "homepage_url": "https://github.com/Eivy/SelectionDownloader",
   "icons": {
     "16": "icons/collection.svg",
