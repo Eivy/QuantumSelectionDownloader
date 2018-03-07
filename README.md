@@ -8,5 +8,5 @@ SelectionDownloader downloads files from selected area without prompt.
 ## TODO
 
 * [x] Settings
-	* [ ] Specify download directory
+	* ~~[ ] Specify download directory~~ (Can't specify download directory with WebExtensions API)
 	* [x] Filter file
