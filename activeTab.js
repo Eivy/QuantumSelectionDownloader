@@ -9,7 +9,12 @@ function download_items (request, sender, sendResponse) {
 function getHrefs (node) {
 	if (node) {
 		if (node.nodeName.toLowerCase() === 'a' && node.hasAttribute('href')) {
-			browser.runtime.sendMessage({ url: (new URL(node.getAttribute('href'))).href })
+			try {
+				let urlObj = new URL(node.getAttribute('href'))
+				browser.runtime.sendMessage({ url: urlObj.href })
+			} catch (e) {
+				console.log(e)
+			}
 		}
 		for (var i = 0; i < node.childNodes.length; ++i) {
 			getHrefs(node.childNodes[i])
