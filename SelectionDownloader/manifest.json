@@ -24,5 +24,10 @@
     ,"activeTab"
     ,"downloads"
     ,"storage"
-  ]
+  ],
+  "applications": {
+    "gecko": {
+      "id": "selectiondownloader@eivy"
+    }
+  }
 }
