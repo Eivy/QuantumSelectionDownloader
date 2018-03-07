@@ -24,14 +24,19 @@ browser.menus.onClicked.addListener((info, tab) => {
 })
 
 function download_item (request, sender, sendResponse) {
-	console.log(request)
-	try {
-		browser.downloads.download({
-			url: request.url
-		}).catch((reason) => { console.log(reason) })
-	} catch (e) {
-		console.log(e)
-	}
+	browser.storage.local.get('options').then((result) => {
+		let filter = result.filter || '\\.(jpg|gif|png|zip|mp4)$'
+		if (filter.length > 0 && !request.url.match((new RegExp(filter)))) {
+			return
+		}
+		try {
+			browser.downloads.download({
+				url: request.url
+			}).catch((reason) => { console.log(reason) })
+		} catch (e) {
+			console.log(e)
+		}
+	})
 }
 
 browser.runtime.onMessage.addListener(download_item)

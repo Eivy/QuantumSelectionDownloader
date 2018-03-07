@@ -3,6 +3,7 @@ var path = require('path')
 module.exports = [
 	{
 		entry: {
+			'options': './options.js',
 			'activeTab': './activeTab.js',
 			'background': './background.js'
 		},
