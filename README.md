@@ -1,4 +1,4 @@
-# SelectionDownloader
+# ![SelectionDownloader](./SelectionDownloader/icons/collection.svg)SelectionDownloader
 
 This is add-on for Firefox( > 58)
 
