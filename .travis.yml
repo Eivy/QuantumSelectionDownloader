@@ -3,13 +3,6 @@ node_js: stable
 dist: trusty
 before_deploy:
 - npm run package
-deploy:
-  provider: releases
-  api_key:
-    secure: KGAS2yS5iOyjW+msPdNZ08ous7Vz3ruNO7dKievUVoRmsr8HyiA9L+UgKVX10c+GuUFxeoobUO9jygM5NsdFiFAPw5IHGrYhqaWXcRDJ42iMgq8mH0F22tZn0nXlG8pN0UbnUbO29MUJzRKa9DowWABw5HKLhmBPH4tPD4ty4lvISWEFdc5NJKTMGgcFfHCJjWAjKY1A+UEmYW4UuAuR4N7asXxgL+Jkuh0fZcp3CDPIeLL2vJn6GwlhWc2V02yPcSrlIJ8bLNrE0J8r86VtP5ND/1Xbf7gXWdmSTXIbB0XIryEEkefF+cBHWAXaZLto1tzckFN2nC2vEXLS+srsPReLDr2M1wL4rndaFVAXS2oxCPX8MHW/W2alyiHA6TSoj4LZkI0HwF6/QnwXwTUFsPOcHOaPef74Sl1av9Ivv5f0bHSmyEmICA15sLTr7NR1F47lB6BEub2FrXaI7Zz2i2xRu1CqVtcOOeUZ3sCk1NVKyzFV0O1jWVMfek35tRQ66RtdAiBhI0vuQR/+F3b82Fq+NgaZgfbqsefI2K6oYfff2UULNAOW2BCSxiDMY9Ufg1V351YsqmE/xCp+LWunQzUOrTcsq0YCWNH+twyeGMvq3veEo2Jx/RoFMi7LvWAjz2x1B0YQGl40kYTONBdnk95VFBzP6/ifM4zo/iVDlYk=
-  file: SelectionDownloader.zip
-  skip_cleanup: true
-  on:
-    repo: Eivy/SelectionDownloader
-    all_branchies: true
-    tags: true
+cache:
+  directories:
+    - node_modules
