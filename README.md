@@ -7,6 +7,6 @@ SelectionDownloader downloads files from selected area without prompt.
 
 ## TODO
 
-* [ ] Settings
+* [x] Settings
 	* [ ] Specify download directory
-	* [ ] Filter file
+	* [x] Filter file
