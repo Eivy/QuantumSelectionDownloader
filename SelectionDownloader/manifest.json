@@ -1,5 +1,5 @@
 {
-  "description": "Download files in selection",
+  "description": "Download files from selected area without prompt",
   "manifest_version": 2,
   "name": "SelectionDownloader",
   "version": "0.1",
