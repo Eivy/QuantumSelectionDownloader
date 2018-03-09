@@ -2,11 +2,4 @@
 
 This is add-on for Firefox
 
-SelectionDownloader downloads files from selected area without prompt.
-
-
-## TODO
-
-* [x] Settings
-	* ~~[ ] Specify download directory~~ (Can't specify download directory with WebExtensions API)
-	* [x] Filter file
+SelectionDownloader downloads files from links and image in selected area without prompt.
