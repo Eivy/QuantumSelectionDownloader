@@ -8,17 +8,25 @@ function download_items (request, sender, sendResponse) {
 
 function getHrefs (node) {
 	if (node) {
-		if (node.nodeName.toLowerCase() === 'a' && node.hasAttribute('href')) {
-			try {
-				let urlObj = new URL(node.getAttribute('href'))
-				browser.runtime.sendMessage({ url: urlObj.href })
-			} catch (e) {
-				console.log(e)
+		try {
+			let urlObj
+			switch (node.nodeName.toLowerCase()) {
+				case 'a':
+					urlObj = new URL(node.getAttribute('href'))
+					break
+				case 'img':
+					urlObj = new URL(node.getAttribute('src'))
+					break
 			}
+			if (urlObj) {
+				browser.runtime.sendMessage({ url: urlObj.href })
+			}
+		} catch (e) {
+			console.log(e)
 		}
-		for (var i = 0; i < node.childNodes.length; ++i) {
-			getHrefs(node.childNodes[i])
-		}
+	}
+	for (var i = 0; i < node.childNodes.length; ++i) {
+		getHrefs(node.childNodes[i])
 	}
 }
 
