@@ -26,15 +26,24 @@ browser.menus.onClicked.addListener((info, tab) => {
 function download_item (request, sender, sendResponse) {
 	browser.storage.local.get('options').then((result) => {
 		let filter = result.filter || '\\.(jpg|gif|png|zip|mp4)$'
-		if (filter.length > 0 && !request.url.match((new RegExp(filter)))) {
-			return
-		}
-		try {
-			browser.downloads.download({
-				url: request.url
-			}).catch((reason) => { console.log(reason) })
-		} catch (e) {
-			console.log(e)
+		let reg = new RegExp(filter)
+		let items = request.url.filter(function (element, index, array) {
+			return element.match(reg) && array.indexOf(element) !== index
+		})
+		if (request.type === 'download') {
+			for (let i of items) {
+				try {
+					browser.downloads.download({
+						url: i
+					}).catch((reason) => { console.log(reason) })
+				} catch (e) {
+					console.log(e)
+				}
+			}
+		} else if (request.type === 'count') {
+			browser.menus.update('selection-download-item', {
+				title: 'Download selected ' + items.length + ' items'
+			})
 		}
 	})
 }
