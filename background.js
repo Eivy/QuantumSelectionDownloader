@@ -7,7 +7,7 @@ browser.menus.create({
 browser.menus.create({
 	id: 'download-item',
 	title: 'Download link',
-	contexts: ['all']
+	contexts: ['link']
 })
 
 browser.menus.onClicked.addListener((info, tab) => {
