@@ -17,7 +17,7 @@ browser.menus.onClicked.addListener((info, tab) => {
 			break
 		case 'download-item':
 			if (info.linkUrl !== '') {
-				download_item({url: info.linkUrl})
+				download_item({type: 'download', url: [info.linkUrl]})
 			}
 			break
 	}
