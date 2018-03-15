@@ -19,10 +19,11 @@ function getHrefs (node) {
 			let urlObj
 			switch (node.nodeName.toLowerCase()) {
 				case 'a':
-					urlObj = new URL(node.getAttribute('href'))
+					urlObj = new URL(fix_url(node.getAttribute('href')))
+					console.log(urlObj)
 					break
 				case 'img':
-					urlObj = new URL(node.getAttribute('src'))
+					urlObj = new URL(fix_url(node.getAttribute('src')))
 					break
 			}
 			if (urlObj) {
@@ -36,6 +37,13 @@ function getHrefs (node) {
 		items = items.concat(getHrefs(node.childNodes[i]))
 	}
 	return items
+}
+
+function fix_url (url) {
+	if (url[0] === '/' && url[1] !== '/') {
+		url = document.location.protocol + '//' + document.location.host + url
+	}
+	return url
 }
 
 function count_items () {
