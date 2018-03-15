@@ -25,11 +25,13 @@ browser.menus.onClicked.addListener((info, tab) => {
 
 function download_item (request, sender, sendResponse) {
 	browser.storage.local.get('options').then((result) => {
-		let filter = result.filter || '\\.(jpg|gif|png|zip|mp4)$'
+		let filter = result || result.options ? result.options.filter : '\\.(jpg|gif|png|zip|mp4)$'
 		let reg = new RegExp(filter)
 		let items = request.url.filter(function (element, index, array) {
+			console.log(element.match(reg) && array.indexOf(element) === index)
 			return element.match(reg) && array.indexOf(element) === index
 		})
+		console.log(items)
 		if (request.type === 'download') {
 			for (let i of items) {
 				try {
