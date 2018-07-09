@@ -23,31 +23,33 @@ browser.menus.onClicked.addListener((info, tab) => {
 	}
 })
 
-function download_item (request, sender, sendResponse) {
-	browser.storage.local.get('options').then((result) => {
-		let filter = result || result.options ? result.options.filter : '\\.(jpg|gif|png|zip|mp4)$'
-		let reg = new RegExp(filter)
-		let items = request.url.filter(function (element, index, array) {
-			console.log(element.match(reg) && array.indexOf(element) === index)
-			return element.match(reg) && array.indexOf(element) === index
-		})
-		console.log(items)
-		if (request.type === 'download') {
-			for (let i of items) {
-				try {
-					browser.downloads.download({
-						url: i
-					}).catch((reason) => { console.log(reason) })
-				} catch (e) {
-					console.log(e)
-				}
-			}
-		} else if (request.type === 'count') {
-			browser.menus.update('selection-download-item', {
-				title: 'Download selected ' + items.length + ' items'
-			})
-		}
+async function download_item (request, sender, sendResponse) {
+	let filter = await browser.storage.local.get('options').catch(e => { console.log(e); return null })
+	if (filter.hasOwnProperty('options')) {
+		filter = filter.options.filter
+	} else {
+		filter = '\\.(jpg|gif|png|zip|mp4)$'
+	}
+	console.log(filter)
+	let reg = new RegExp(filter)
+	let items = request.url.filter(function (element, index, array) {
+		return element.match(reg) && array.indexOf(element) === index
 	})
+	if (request.type === 'download') {
+		for (let i of items) {
+			try {
+				browser.downloads.download({
+					url: i
+				}).catch((reason) => { console.log(reason) })
+			} catch (e) {
+				console.log(e)
+			}
+		}
+	} else if (request.type === 'count') {
+		browser.menus.update('selection-download-item', {
+			title: 'Download selected ' + items.length + ' items'
+		})
+	}
 }
 
 browser.runtime.onMessage.addListener(download_item)
