@@ -20,7 +20,6 @@ function getHrefs (node) {
 			switch (node.nodeName.toLowerCase()) {
 				case 'a':
 					urlObj = new URL(fix_url(node.getAttribute('href')))
-					console.log(urlObj)
 					break
 				case 'img':
 					urlObj = new URL(fix_url(node.getAttribute('src')))
